@@ -2,6 +2,9 @@
 ## Introduction
 Next.js と AWS でいろいろサンプルをやるアプリ
 
+## Archives
+- Terraform で EC2 に Next.js をデプロイする構成をやってみた https://github.com/abehironao/next-ec2-sample-app/pull/1
+
 ## Documentation
 https://nextjs.org/docs
 
