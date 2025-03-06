@@ -1,4 +1,4 @@
-# Logical Trade
+# Next EC2 Sample App
 ## Introduction
 Next.js と AWS でいろいろサンプルをやるアプリ
 
