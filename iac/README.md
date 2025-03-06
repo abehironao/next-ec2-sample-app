@@ -1,3 +1,7 @@
+# Terraform
+https://developer.hashicorp.com/terraform/docs
+
+## コマンド
 ```
 terraform plan -var-file=environments/dev.tfvars
 terraform apply -var-file=environments/dev.tfvars
@@ -11,9 +15,10 @@ chmod 600 ~/.ssh/next-ec2-sample-app-key.pem
 
 ```
 terraform output ec2_public_ip
-ssh -i ~/.ssh/next-ec2-sample-app-key.pem ec2-user@52.199.37.97
+ssh -i ~/.ssh/next-ec2-sample-app-key.pem ec2-user@XX.XX.XX.XX
 ```
 
+## 想定している構成
 ```
 ./iac/                            # IaC（Infrastructure as Code）管理用
 ├── terraform/                    # Terraform 管理ディレクトリ
