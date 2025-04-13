@@ -36,6 +36,23 @@ output "private_key_pem" {
   sensitive = true
 }
 
+module "lambda" {
+  source = "./modules/lambda"
+  function_name = var.function_name
+  zip_path      = var.zip_path
+  line_channel_access_token = var.line_channel_access_token
+  role_name     = var.role_name
+}
+
+output "lambda_function_name" {
+  value = module.lambda.function_name
+}
+
+output "lambda_api_endpoint" {
+  value = module.lambda.api_endpoint
+
+}
+
 # module "rds" {
 #   source         = "./modules/rds"
 #   db_name        = var.db_name
