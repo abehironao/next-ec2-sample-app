@@ -1,8 +1,3 @@
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-}
-
 variable "function_name" {
   description = "Lambda function name"
   type        = string
@@ -23,4 +18,3 @@ variable "line_channel_access_token" {
   type        = string
   sensitive   = true
 }
-
