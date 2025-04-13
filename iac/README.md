@@ -69,6 +69,11 @@ terraform destroy -target=module.lambda -var-file=environments/dev.tfvars # Lamb
 │   │   │   ├── variables.tf      # 変数定義
 │   │   │   ├── outputs.tf        # 出力定義
 │   │   │   └── security.tf       # セキュリティグループ設定
+│   │   ├── lambda
+│   │   │   ├── api_gateway.tf    # Api Gateway の定義
+│   │   │   ├── main.tf           # Lambda の定義
+│   │   │   ├── outputs.tf        # 出力定義
+│   │   │   └── variables.tf      # 変数定義
 │   │   ├── rds/                  # RDS のモジュール
 │   │   │   ├── main.tf           # RDS の定義
 │   │   │   ├── variables.tf      # 変数定義
