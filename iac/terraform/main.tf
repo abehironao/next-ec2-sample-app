@@ -41,7 +41,7 @@ module "lambda" {
   function_name = var.function_name
   zip_path      = var.zip_path
   line_channel_access_token = var.line_channel_access_token
-  role_name     = "line-push-message-role"
+  role_name     = var.role_name
 }
 
 output "lambda_function_name" {
