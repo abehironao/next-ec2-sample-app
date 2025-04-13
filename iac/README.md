@@ -1,24 +1,56 @@
 # Terraform
+
 https://developer.hashicorp.com/terraform/docs
 
 ## コマンド
+
+### 事前準備
+
+- Lambda 関数の zip アーカイブを作成
+
 ```
-terraform plan -var-file=environments/dev.tfvars
-terraform apply -var-file=environments/dev.tfvars
-terraform destroy
+cd ~/Workspace/next-ec2-sample-app/iac/lambda/line-messaging-api
+zip -r function.zip index.js node_modules package.json package-lock.json
+cd ~/Workspace/next-ec2-sample-app/iac/terraform
+
+
 ```
+
+### リソースに適用
+
+```
+terraform plan -out=tfplan -var-file=environments/dev.tfvars
+terraform apply "tfplan"
+```
+
+### EC2 の秘密鍵を保存
 
 ```
 terraform output -raw private_key_pem > ~/.ssh/next-ec2-sample-app-key.pem
 chmod 600 ~/.ssh/next-ec2-sample-app-key.pem
 ```
 
+### line-messaging-api 送信
+
 ```
-terraform output ec2_public_ip
-ssh -i ~/.ssh/next-ec2-sample-app-key.pem ec2-user@XX.XX.XX.XX
+curl --request POST \
+  --url https://xxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/send \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"userId": "Uxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	"text":"こんにちは！LINE Messaging API"
+}'
+```
+
+### リソースを削除
+
+```
+terraform destroy -target=module.ec2 -var-file=environments/dev.tfvars # EC2
+terraform destroy -target=module.lambda -var-file=environments/dev.tfvars # Lambda
 ```
 
 ## 想定している構成
+
 ```
 ./iac/                            # IaC（Infrastructure as Code）管理用
 ├── terraform/                    # Terraform 管理ディレクトリ
